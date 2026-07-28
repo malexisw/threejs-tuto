@@ -71,6 +71,7 @@ export function createScene(container) {
   const raycaster = null
   const pointer = null
   const dragPlane = null
+  const dragNormal = null
   const hit = null
   const offset = null
 
