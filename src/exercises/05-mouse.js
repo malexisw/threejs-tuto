@@ -64,12 +64,10 @@ export function createScene(container) {
 
   // TODO 1 — Les outils du glisser-déposer. On les crée UNE fois ici, jamais
   //   dans les gestionnaires d'évènements (qui tournent 60 fois par seconde).
-  //   → const raycaster = new THREE.Raycaster()
-  //   → const pointer = new THREE.Vector2()      // coordonnées souris normalisées
-  //   → const dragPlane = new THREE.Plane()      // la surface de glissement
-  //   → const planeNormal = new THREE.Vector3(0, 1, 0)  // plan horizontal
-  //   → const hit = new THREE.Vector3()          // point d'intersection
-  //   → const offset = new THREE.Vector3()       // écart clic ↔ centre du cube
+  //   Il te faut : le lanceur de rayons, un vecteur 2D pour les coordonnées
+  //   normalisées de la souris, le plan de glissement, sa normale (verticale,
+  //   pour un plan horizontal), un vecteur pour le point d'intersection et un
+  //   dernier pour l'écart entre le clic et le centre du cube.
   const raycaster = null
   const pointer = null
   const dragPlane = null
@@ -79,71 +77,46 @@ export function createScene(container) {
   let dragging = false
   let hovering = false
 
-  // TODO 2 — Convertis les pixels de la souris en repère normalisé.
-  //   Le raycaster attend des valeurs entre -1 et +1, avec le Y INVERSÉ par
-  //   rapport au DOM. D'où le `* 2 - 1` et le signe négatif.
-  //   → const rect = canvas.getBoundingClientRect()
-  //   → pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1
-  //   → pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1
-  //   → raycaster.setFromCamera(pointer, camera)
+  // TODO 2 — Convertis la position de la souris (en pixels, relative au canvas)
+  //   en repère normalisé : le raycaster attend des valeurs entre -1 et +1, avec
+  //   le Y INVERSÉ par rapport au DOM. Termine en orientant le rayon depuis la
+  //   caméra à travers ce point.
   function updatePointer(event) {}
 
   function onPointerDown(event) {
-    // TODO 3 — Mets à jour le rayon, puis teste s'il touche le cube.
-    //   Si le clic est dans le vide, on ne fait rien.
-    //   → updatePointer(event)
-    //   → if (raycaster.intersectObject(cube).length === 0) return
+    // TODO 3 — Mets à jour le rayon, puis teste s'il touche le cube. Si le clic
+    //   est dans le vide, on sort : il n'y a rien à déplacer.
 
     // TODO 4 — Définis le plan de glissement : horizontal, passant par le cube.
-    //   → dragPlane.setFromNormalAndCoplanarPoint(planeNormal, cube.position)
 
-    // TODO 5 — Mémorise l'écart entre le point cliqué et le centre du cube.
-    //   Sans lui, le cube saute brutalement sous le curseur au premier clic.
-    //   → if (raycaster.ray.intersectPlane(dragPlane, hit)) {
-    //   →   offset.copy(hit).sub(cube.position)
-    //   → } else {
-    //   →   offset.set(0, 0, 0)
-    //   → }
+    // TODO 5 — Mémorise l'écart entre le point cliqué sur le plan et le centre
+    //   du cube (et remets-le à zéro si le rayon ne croise pas le plan). Sans
+    //   cet écart, le cube saute brutalement sous le curseur au premier clic.
 
     // TODO 6 — Passe en mode glissement et capture le pointeur, pour que les
     //   évènements continuent d'arriver même si la souris sort du canvas.
-    //   → dragging = true
-    //   → canvas.setPointerCapture(event.pointerId)
   }
 
   function onPointerMove(event) {
     // TODO 7 — Mets à jour le rayon à chaque mouvement.
-    //   → updatePointer(event)
 
-    // TODO 8 — Hors glissement, teste juste le survol pour changer le curseur.
-    //   → if (!dragging) {
-    //   →   hovering = raycaster.intersectObject(cube).length > 0
-    //   →   canvas.style.cursor = hovering ? 'grab' : 'default'
-    //   →   return
-    //   → }
+    // TODO 8 — Hors glissement, teste juste le survol du cube pour changer le
+    //   curseur (`hovering` sert aussi à le faire briller dans animate()), puis
+    //   sors.
 
-    // TODO 9 — En glissement : où le rayon croise-t-il le plan ? On y place le
-    //   cube, sans oublier de retirer l'offset. Le clamp le garde sur la grille.
-    //   → if (!raycaster.ray.intersectPlane(dragPlane, hit)) return
-    //   → hit.sub(offset)
-    //   → cube.position.x = THREE.MathUtils.clamp(hit.x, -LIMIT, LIMIT)
-    //   → cube.position.z = THREE.MathUtils.clamp(hit.z, -LIMIT, LIMIT)
+    // TODO 9 — En glissement : trouve où le rayon croise le plan, retire
+    //   l'écart mémorisé, et place le cube là — en x et z seulement. Encadre les
+    //   deux valeurs par LIMIT pour qu'il ne sorte pas de la grille.
   }
 
   function onPointerUp(event) {
-    // TODO 10 — Termine le glissement et relâche le pointeur.
-    //   → if (!dragging) return
-    //   → dragging = false
-    //   → if (canvas.hasPointerCapture(event.pointerId)) {
-    //   →   canvas.releasePointerCapture(event.pointerId)
-    //   → }
+    // TODO 10 — Sors du mode glissement et relâche la capture du pointeur (si
+    //   elle est toujours active).
   }
 
-  // TODO 11 — Branche les trois écouteurs sur le canvas.
-  //   → canvas.addEventListener('pointerdown', onPointerDown)
-  //   → canvas.addEventListener('pointermove', onPointerMove)
-  //   → canvas.addEventListener('pointerup', onPointerUp)
-  //   → canvas.addEventListener('pointercancel', onPointerUp)
+  // TODO 11 — Branche les écouteurs de pointeur sur le canvas : appui,
+  //   mouvement, relâchement, et l'annulation qui se traite comme un
+  //   relâchement.
 
   // ---------------------------------------------------------------------------
 
@@ -171,9 +144,7 @@ export function createScene(container) {
     dispose() {
       cancelAnimationFrame(frameId)
 
-      // TODO 12 — Débranche les écouteurs que tu as ajoutés.
-      //   → canvas.removeEventListener('pointerdown', onPointerDown)
-      //   → ... et les trois autres.
+      // TODO 12 — Débranche les quatre écouteurs que tu as ajoutés.
 
       geometry.dispose()
       material.dispose()

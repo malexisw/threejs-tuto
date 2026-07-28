@@ -25,27 +25,24 @@ export function createScene(container) {
 
   // ---------------------------------------------------------------- à toi ----
 
-  // TODO 1 — La forme : un cube de 1.5 unité de côté.
-  //   → new THREE.BoxGeometry(1.5, 1.5, 1.5)
+  // TODO 1 — La forme : la géométrie d'un cube de 1.5 unité de côté.
   const geometry = null
 
-  // TODO 2 — L'apparence : une couleur plate, qui ignore les lumières.
-  //   → new THREE.MeshBasicMaterial({ color: '#c084fc' })
+  // TODO 2 — L'apparence : un matériau de couleur plate, qui ignore totalement
+  //   les lumières (on ajoutera l'éclairage à l'étape suivante).
   const material = null
 
   // TODO 3 — Le mesh assemble la forme et l'apparence.
-  //   → new THREE.Mesh(geometry, material)
   const cube = null
 
-  // TODO 4 — Pose le cube sur la grille, puis fais-le pivoter un peu.
-  //   → cube.position.set(0, 0.75, 0)   (la moitié de sa hauteur)
-  //   → cube.rotation.y = Math.PI / 5   (en radians, pas en degrés !)
+  // TODO 4 — Pose le cube sur la grille : son centre doit monter de la moitié
+  //   de sa hauteur, sinon il s'enfonce à moitié dans le sol.
+  //   Puis fais-le pivoter un peu sur son axe vertical — attention, les
+  //   rotations sont en radians, pas en degrés.
 
   // TODO 5 — Ajoute le cube à la scène. Un mesh non ajouté n'existe pas.
-  //   → scene.add(cube)
 
   // TODO 6 — Dessine l'image.
-  //   → renderer.render(scene, camera)
 
   // ---------------------------------------------------------------------------
 

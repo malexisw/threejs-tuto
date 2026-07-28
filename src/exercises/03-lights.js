@@ -25,17 +25,14 @@ export function createScene(container) {
 
   // ---------------------------------------------------------------- à toi ----
 
-  // TODO 1 — Active les ombres sur le renderer (désactivées par défaut).
-  //   → renderer.shadowMap.enabled = true
+  // TODO 1 — Active les ombres sur le renderer : elles coûtent cher, donc
+  //   elles sont désactivées par défaut.
 
   const geometry = new THREE.BoxGeometry(1.5, 1.5, 1.5)
 
-  // TODO 2 — Remplace MeshBasicMaterial par un matériau qui réagit à la lumière.
-  //   → new THREE.MeshStandardMaterial({
-  //       color: '#c084fc',
-  //       roughness: 0.35,  // 0 = miroir, 1 = mat
-  //       metalness: 0.1,
-  //     })
+  // TODO 2 — Remplace ce MeshBasicMaterial par un matériau qui réagit à la
+  //   lumière. Règle aussi sa rugosité (0 = miroir, 1 = mat) et son côté
+  //   métallique.
   const material = new THREE.MeshBasicMaterial({ color: '#c084fc' })
 
   const cube = new THREE.Mesh(geometry, material)
@@ -43,28 +40,20 @@ export function createScene(container) {
   scene.add(cube)
 
   // TODO 3 — Autorise le cube à projeter son ombre.
-  //   → cube.castShadow = true
 
-  // TODO 4 — Crée un sol pour recevoir l'ombre : un plan de 12 x 12,
-  //   couché à l'horizontale, en MeshStandardMaterial couleur '#1b1d25'.
-  //   → const floorGeometry = new THREE.PlaneGeometry(12, 12)
-  //   → const floorMaterial = new THREE.MeshStandardMaterial({ color: '#1b1d25' })
-  //   → const floor = new THREE.Mesh(floorGeometry, floorMaterial)
-  //   → floor.rotation.x = -Math.PI / 2   (un plan est vertical par défaut)
-  //   → floor.receiveShadow = true
-  //   → scene.add(floor)
+  // TODO 4 — Crée un sol pour recevoir l'ombre : un plan de 12 x 12, dans un
+  //   matériau qui réagit lui aussi à la lumière. Un plan est vertical par
+  //   défaut : il faut le coucher d'un quart de tour pour en faire un sol.
+  //   Autorise-le à recevoir les ombres, puis ajoute-le à la scène.
   const floorGeometry = null
   const floorMaterial = null
 
-  // TODO 5 — Une lumière d'ambiance, pour qu'aucune face ne soit toute noire.
-  //   → scene.add(new THREE.AmbientLight('#ffffff', 0.6))
+  // TODO 5 — Une lumière d'ambiance : elle éclaire tout uniformément, pour
+  //   qu'aucune face ne reste complètement noire. Elle ne crée aucun relief.
 
-  // TODO 6 — Une lumière directionnelle : le "soleil". C'est elle qui crée
-  //   le relief et les ombres. Pense à la placer et à activer son castShadow.
-  //   → const sun = new THREE.DirectionalLight('#ffffff', 2.5)
-  //   → sun.position.set(3, 5, 2)
-  //   → sun.castShadow = true
-  //   → scene.add(sun)
+  // TODO 6 — Une lumière directionnelle : le "soleil". C'est elle qui sculpte
+  //   les faces et projette les ombres. Place-la en hauteur, sur le côté, et
+  //   n'oublie pas de l'autoriser à projeter des ombres.
 
   // ---------------------------------------------------------------------------
 

@@ -49,35 +49,30 @@ export function createScene(container) {
 
   // ---------------------------------------------------------------- à toi ----
 
-  // TODO 1 — Une horloge pour mesurer le temps entre deux images.
-  //   → new THREE.Clock()
+  // TODO 1 — Une horloge Three.js, pour mesurer le temps entre deux images.
   const clock = null
 
   // On garde l'identifiant de la boucle pour pouvoir l'annuler plus bas.
   let frameId = null
 
   function animate() {
-    // TODO 2 — Redemande une image au navigateur, et stocke son identifiant.
-    //   → frameId = requestAnimationFrame(animate)
+    // TODO 2 — Redemande une image au navigateur, et stocke l'identifiant
+    //   qu'il renvoie dans `frameId`.
 
-    // TODO 3 — Récupère le temps écoulé depuis l'image précédente, en secondes.
-    //   → const delta = clock.getDelta()
+    // TODO 3 — Demande à l'horloge le temps écoulé depuis l'image précédente,
+    //   en secondes.
 
-    // TODO 4 — Fais tourner le cube. Multiplie TOUJOURS par delta, sinon la
-    //   vitesse dépend du taux de rafraîchissement de l'écran.
-    //   → cube.rotation.x += delta * 0.6
-    //   → cube.rotation.y += delta * 0.9
+    // TODO 4 — Fais tourner le cube sur deux axes. Multiplie TOUJOURS par ce
+    //   temps écoulé, sinon la vitesse dépend du taux de rafraîchissement de
+    //   l'écran.
 
-    // TODO 5 — Bonus : fais-le flotter avec un sinus.
-    //   clock.elapsedTime = secondes depuis le démarrage de l'horloge.
-    //   → cube.position.y = 1 + Math.sin(clock.elapsedTime * 2) * 0.3
+    // TODO 5 — Bonus : fais-le flotter de haut en bas avec un sinus. L'horloge
+    //   sait aussi donner le temps total écoulé depuis son démarrage.
 
     // TODO 6 — Dessine l'image. À chaque tour de boucle, cette fois.
-    //   → renderer.render(scene, camera)
   }
 
   // TODO 7 — Démarre la boucle.
-  //   → animate()
   renderer.render(scene, camera) // ← supprime cette ligne, animate() la remplace
 
   // ---------------------------------------------------------------------------
@@ -88,9 +83,9 @@ export function createScene(container) {
     renderer,
     object: cube,
     dispose() {
-      // TODO 8 — Annule la boucle. Sans ça, elle continue de tourner après la
-      //   destruction de la scène et garde toute la mémoire 3D en vie.
-      //   → cancelAnimationFrame(frameId)
+      // TODO 8 — Annule la boucle grâce au `frameId`. Sans ça, elle continue de
+      //   tourner après la destruction de la scène et garde toute la mémoire 3D
+      //   en vie.
 
       geometry.dispose()
       material.dispose()
