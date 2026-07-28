@@ -258,30 +258,150 @@ code {
   color: var(--text-h);
 }
 
-.task-list {
-  counter-reset: task;
+/* ---------- Échelle d'indices ---------- */
+
+.ladder {
+  margin-top: 32px;
+}
+
+.ladder-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.ladder-head h3 {
+  margin: 0;
+}
+
+.ladder-score {
+  font-family: var(--mono);
+  font-size: 13px;
+  flex: none;
+}
+
+.ladder-score.is-quiet {
+  opacity: 0.4;
+}
+
+.ladder-intro {
+  font-size: 14px;
+  margin: 6px 0 0;
+  opacity: 0.75;
+}
+
+.ladder-items {
   list-style: none;
   padding: 0;
+  margin: 14px 0 0;
 }
 
-.task-list li {
-  counter-increment: task;
-  position: relative;
-  padding-left: 34px;
-  margin-bottom: 10px;
+.ladder-items li {
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
 }
 
-.task-list li::before {
-  content: 'T' counter(task);
-  position: absolute;
-  left: 0;
-  top: 2px;
+.ladder-row {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin: 0;
+}
+
+.ladder-badge {
+  flex: none;
   font-family: var(--mono);
   font-size: 11px;
   padding: 2px 5px;
   border-radius: 4px;
   color: var(--accent);
   background: var(--accent-bg);
+}
+
+.ladder-label {
+  color: var(--text-h);
+  font-size: 15px;
+}
+
+.ladder-items li.is-open .ladder-label {
+  color: var(--accent);
+}
+
+.ladder-hints {
+  margin: 10px 0 0 34px;
+}
+
+.ladder-hint {
+  font-size: 15px;
+  line-height: 150%;
+  margin: 0 0 8px;
+}
+
+.ladder-level {
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0.55;
+  margin-bottom: 2px;
+}
+
+.ladder-hint.is-answer {
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--accent-border);
+  background: var(--accent-bg);
+  color: var(--text-h);
+}
+
+.ladder-doc {
+  display: inline-block;
+  font-size: 13px;
+  padding: 3px 10px;
+  margin-bottom: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+  text-decoration: none;
+}
+
+.ladder-doc:hover {
+  border-color: var(--accent-border);
+}
+
+.ladder-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0 0 34px;
+}
+
+.ladder-actions .ghost-button {
+  font-size: 13px;
+  padding: 5px 12px;
+}
+
+.ladder-actions .ghost-button.is-answer {
+  color: var(--ko);
+  border-color: rgba(251, 113, 133, 0.35);
+}
+
+.ladder-fold {
+  font: inherit;
+  font-size: 13px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--text);
+  opacity: 0.6;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.ladder-fold:hover {
+  opacity: 1;
 }
 
 .doc-links {

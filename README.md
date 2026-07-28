@@ -2,8 +2,9 @@
 
 Un tuto **à trous** pour apprendre [Three.js](https://threejs.org), en Vue 3 + Vite.
 Le code, c'est toi qui l'écris : chaque étape est un fichier rempli de `// TODO` à
-compléter dans ton éditeur. L'app affiche le rendu de **ton** code, les consignes, et
-une liste de vérifications qui te dit précisément ce qui manque.
+compléter dans ton éditeur. L'app affiche le rendu de **ton** code, une échelle
+d'indices qui se déplie au clic, et une liste de vérifications qui te dit précisément
+ce qui manque.
 
 ## Démarrer
 
@@ -28,9 +29,29 @@ sauvegarde, la page se recharge et les vérifications se relancent.
 Chaque exercice **part du code de l'étape précédente déjà écrit** : tu n'écris que la
 nouvelle notion, jamais deux fois le même boilerplate.
 
-Bloqué ? Le bouton « Solution » exécute la version de référence dans le même canvas,
-et « Voir la solution » affiche son code. Les solutions complètes sont dans
-[src/solutions/](src/solutions/).
+## Bloqué ? L'échelle d'indices
+
+Le panneau « À faire » liste les TODO du fichier, un par un, **sans rien dévoiler**.
+Chaque TODO se déplie à la demande, un cran à la fois :
+
+| Cran | Ce qu'il donne |
+| --- | --- |
+| Cadrage | une question qui nomme le problème, jamais l'API |
+| Vocabulaire | la classe ou la méthode Three.js, sans ses arguments, + le lien vers sa doc |
+| Structure | la forme du code, sans les valeurs |
+| Réponse | la ligne à écrire, valeurs comprises |
+
+Un compteur affiche le nombre de crans ouverts sur le total : l'aide a un coût visible.
+Les crans ouverts survivent au rechargement de la page, donc rien à redéplier après
+chaque sauvegarde. « Tout replier » remet l'étape à zéro.
+
+Le contenu de l'échelle vit dans [src/lessons/steps.js](src/lessons/steps.js), un objet
+`todos` par étape ; l'affichage dans
+[src/components/HintLadder.vue](src/components/HintLadder.vue).
+
+Si ça ne suffit vraiment pas : le bouton « Solution » exécute la version de référence
+dans le même canvas, et « Voir la solution » affiche son code. Les solutions complètes
+sont dans [src/solutions/](src/solutions/).
 
 ## Le contrat
 

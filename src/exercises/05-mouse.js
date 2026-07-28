@@ -7,6 +7,9 @@
  * L'idée : on lance un rayon depuis la caméra à travers le pixel survolé, et
  * on demande à Three.js ce qu'il traverse. Un canvas n'a pas de zones
  * cliquables comme le HTML : c'est la seule façon de cliquer sur un objet 3D.
+ *
+ * Douze TODO, c'est beaucoup : le panneau « À faire » les reprend un par un et
+ * ouvre un indice par clic, du cadrage à la réponse.
  */
 import * as THREE from 'three'
 

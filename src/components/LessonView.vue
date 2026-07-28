@@ -3,6 +3,7 @@ import { computed, ref, watch } from 'vue'
 import ChecklistPanel from './ChecklistPanel.vue'
 import CodeBlock from './CodeBlock.vue'
 import ExerciseRunner from './ExerciseRunner.vue'
+import HintLadder from './HintLadder.vue'
 import { inlineCode } from '../lib/format.js'
 
 const props = defineProps({
@@ -74,10 +75,7 @@ watch(
         <h3>À savoir</h3>
         <p v-for="(paragraph, i) in step.brief" :key="i" v-html="inlineCode(paragraph)"></p>
 
-        <h3>À faire</h3>
-        <ol class="task-list">
-          <li v-for="(task, i) in step.tasks" :key="i" v-html="inlineCode(task)"></li>
-        </ol>
+        <HintLadder :key="step.id" :todos="step.todos" :step-id="step.id" />
 
         <ChecklistPanel :checks="step.checks" :context="context" />
 

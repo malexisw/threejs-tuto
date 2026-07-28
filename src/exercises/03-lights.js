@@ -4,6 +4,9 @@
  * Le cube de l'étape 2 est là, mais tout plat. À toi de lui donner du volume.
  * Attention : dès que tu passes en MeshStandardMaterial, l'objet devient NOIR
  * tant qu'il n'y a pas de lumière dans la scène. C'est normal.
+ *
+ * Bloqué ? Le panneau « À faire » ouvre un indice par clic, du cadrage à la
+ * réponse. Un cran, puis retour au code.
  */
 import * as THREE from 'three'
 

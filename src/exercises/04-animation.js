@@ -3,6 +3,9 @@
  *
  * La scène est complète et éclairée, mais figée : `renderer.render()` n'est
  * appelé qu'une fois. À toi d'écrire la boucle qui redessine en continu.
+ *
+ * Bloqué ? Le panneau « À faire » ouvre un indice par clic, du cadrage à la
+ * réponse. Un cran, puis retour au code.
  */
 import * as THREE from 'three'
 

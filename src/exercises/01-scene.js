@@ -2,10 +2,12 @@
  * ÉTAPE 1 — La scène, la caméra, le renderer
  *
  * Objectif : afficher une grille et les trois axes de l'espace 3D.
- * Les consignes détaillées, les valeurs à utiliser et la doc sont dans le
- * navigateur, à droite du rendu.
  *
  * Complète le code, sauvegarde, la page se recharge.
+ *
+ * Bloqué sur un TODO ? Dans le navigateur, le panneau « À faire » ouvre ses
+ * indices un cran à la fois : cadrage, vocabulaire, structure, puis réponse.
+ * Prends-en un seul et retourne essayer.
  */
 import * as THREE from 'three'
 

@@ -2,6 +2,9 @@
  * ÉTAPE 2 — Afficher un objet : géométrie + matériau
  *
  * L'étape 1 est déjà écrite pour toi. À toi de créer le cube.
+ *
+ * Bloqué ? Le panneau « À faire » ouvre un indice par clic, du cadrage à la
+ * réponse. Un cran, puis retour au code.
  */
 import * as THREE from 'three'
 
